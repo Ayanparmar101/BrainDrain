@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D PLC Programming Simulator - Ladder Logic & Automation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🔌</span>
+                <h1>PLC Simulator</h1>
+            </div>
+            <p class="tagline">Interactive Ladder Logic & Industrial Automation</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Control Panel -->
+            <aside class="control-panel">
+                <div class="panel-section">
+                    <h2><span class="section-icon">📋</span> Ladder Logic Program</h2>
+                    <div class="ladder-editor" id="ladderEditor">
+                        <div class="rung" data-rung="1">
+                            <div class="rung-label">Rung 1</div>
+                            <div class="ladder-elements">
+                                <div class="ladder-element contact no" data-input="X0" title="Input X0 (Start Button)">
+                                    <span class="contact-symbol">] [</span>
+                                    <span class="contact-label">X0</span>
+                                </div>
+                                <div class="ladder-element contact nc" data-input="X1" title="Input X1 (Stop Button)">
+                                    <span class="contact-symbol">]/[</span>
+                                    <span class="contact-label">X1</span>
+                                </div>
+                                <div class="ladder-element coil" data-output="Y0" title="Output Y0 (Motor 1)">
+                                    <span class="coil-symbol">( )</span>
+                                    <span class="coil-label">Y0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rung" data-rung="2">
+                            <div class="rung-label">Rung 2</div>
+                            <div class="ladder-elements">
+                                <div class="ladder-element contact no" data-input="Y0" title="Motor 1 Running">
+                                    <span class="contact-symbol">] [</span>
+                                    <span class="contact-label">Y0</span>
+                                </div>
+                                <div class="ladder-element contact no" data-input="X2" title="Input X2 (Sensor 1)">
+                                    <span class="contact-symbol">] [</span>
+                                    <span class="contact-label">X2</span>
+                                </div>
+                                <div class="ladder-element coil" data-output="Y1" title="Output Y1 (Conveyor)">
+                                    <span class="coil-symbol">( )</span>
+                                    <span class="coil-label">Y1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rung" data-rung="3">
+                            <div class="rung-label">Rung 3</div>
+                            <div class="ladder-elements">
+                                <div class="ladder-element contact no" data-input="Y1" title="Conveyor Running">
+                                    <span class="contact-symbol">] [</span>
+                                    <span class="contact-label">Y1</span>
+                                </div>
+                                <div class="ladder-element contact no" data-input="X3" title="Input X3 (Sensor 2)">
+                                    <span class="contact-symbol">] [</span>
+                                    <span class="contact-label">X3</span>
+                                </div>
+                                <div class="ladder-element timer" data-timer="T0" title="Timer T0 (2 seconds)">
+                                    <span class="timer-symbol">[TON]</span>
+                                    <span class="timer-label">T0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rung" data-rung="4">
+                            <div class="rung-label">Rung 4</div>
+                            <div class="ladder-elements">
+                                <div class="ladder-element contact no" data-input="T0" title="Timer T0 Done">
+                                    <span class="contact-symbol">] [</span>
+                                    <span class="contact-label">T0</span>
+                                </div>
+                                <div class="ladder-element coil" data-output="Y2" title="Output Y2 (Actuator)">
+                                    <span class="coil-symbol">( )</span>
+                                    <span class="coil-label">Y2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><span class="section-icon">🎛️</span> Input Controls</h2>
+                    <div class="input-controls">
+                        <div class="input-group">
+                            <button class="input-btn momentary" id="X0" data-input="X0">
+                                <span class="btn-indicator"></span>
+                                <span>X0 - Start</span>
+                            </button>
+                            <button class="input-btn toggle" id="X1" data-input="X1">
+                                <span class="btn-indicator"></span>
+                                <span>X1 - Stop</span>
+                            </button>
+                        </div>
+                        <div class="input-group">
+                            <button class="input-btn toggle" id="X2" data-input="X2">
+                                <span class="btn-indicator"></span>
+                                <span>X2 - Sensor 1</span>
+                            </button>
+                            <button class="input-btn toggle" id="X3" data-input="X3">
+                                <span class="btn-indicator"></span>
+                                <span>X3 - Sensor 2</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><span class="section-icon">⚡</span> Output Status</h2>
+                    <div class="output-status">
+                        <div class="output-indicator" data-output="Y0">
+                            <span class="output-led"></span>
+                            <span class="output-name">Y0 - Motor 1</span>
+                            <span class="output-state">OFF</span>
+                        </div>
+                        <div class="output-indicator" data-output="Y1">
+                            <span class="output-led"></span>
+                            <span class="output-name">Y1 - Conveyor</span>
+                            <span class="output-state">OFF</span>
+                        </div>
+                        <div class="output-indicator" data-output="Y2">
+                            <span class="output-led"></span>
+                            <span class="output-name">Y2 - Actuator</span>
+                            <span class="output-state">OFF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><span class="section-icon">🎮</span> PLC Controls</h2>
+                    <div class="button-group">
+                        <button id="runBtn" class="control-btn run-btn">
+                            <span class="btn-icon">▶</span> Run PLC
+                        </button>
+                        <button id="stopBtn" class="control-btn stop-btn" disabled>
+                            <span class="btn-icon">⏹</span> Stop PLC
+                        </button>
+                        <button id="resetBtn" class="control-btn reset-btn">
+                            <span class="btn-icon">🔄</span> Reset All
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><span class="section-icon">⏱️</span> Timer Status</h2>
+                    <div class="timer-status">
+                        <div class="timer-display" data-timer="T0">
+                            <span class="timer-name">T0</span>
+                            <div class="timer-progress">
+                                <div class="timer-bar" id="timerBar"></div>
+                            </div>
+                            <span class="timer-value" id="timerValue">0.0s / 2.0s</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section status-panel">
+                    <h2><span class="section-icon">📊</span> PLC Status</h2>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-label">PLC Mode</span>
+                            <span class="status-value" id="plcMode">STOP</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Scan Time</span>
+                            <span class="status-value" id="scanTime">0 ms</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Cycle Count</span>
+                            <span class="status-value" id="cycleCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section camera-section">
+                    <h2><span class="section-icon">📷</span> Camera Views</h2>
+                    <div class="camera-buttons">
+                        <button class="camera-btn active" data-view="perspective">3D View</button>
+                        <button class="camera-btn" data-view="top">Top</button>
+                        <button class="camera-btn" data-view="front">Front</button>
+                        <button class="camera-btn" data-view="side">Side</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 3D Viewport -->
+            <main class="viewport">
+                <div id="canvas-container">
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <div class="spinner"></div>
+                        <p>Loading 3D Environment...</p>
+                    </div>
+                </div>
+                <div class="viewport-controls">
+                    <span class="hint">🖱️ Left-click + drag to rotate | Scroll to zoom | Right-click + drag to pan</span>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🎓 Educational PLC Simulation Platform | Learn ladder logic programming and industrial automation</p>
+        </footer>
+    </div>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

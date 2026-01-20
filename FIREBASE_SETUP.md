@@ -34,7 +34,7 @@
 ### New Files
 - `src/contexts/AuthContext.jsx` - Authentication context provider
 - `src/firebase.js` - Firebase configuration
-- `firebase.json` - Firebase project configuration
+- `firebase.json` - Firebase configuration (Firestore rules/indexes only; Hosting removed)
 - `firestore.rules` - Firestore security rules
 - `.firebaserc` - Firebase project aliases
 
@@ -75,30 +75,20 @@
 }
 ```
 
-## 🚀 Deployment Instructions
+## 🚀 Running Locally
 
-### Option 1: Firebase Hosting (Recommended)
+1. **Start dev server**:
+  ```bash
+  npm run dev
+  ```
 
-1. **Build the app**:
-   ```bash
-   npm run build
-   ```
+2. **(Optional) Production build preview**:
+  ```bash
+  npm run build
+  npm run preview
+  ```
 
-2. **Deploy to Firebase**:
-   ```bash
-   firebase deploy
-   ```
-
-3. **Your app will be live at**:
-   `https://braindrain-portal-v1.web.app`
-
-### Option 2: Other Hosting Providers
-
-The `dist` folder contains your production build. You can deploy it to:
-- Vercel
-- Netlify
-- GitHub Pages
-- Any static hosting service
+Note: Firebase Hosting is intentionally not configured in this repo.
 
 ## 🔑 Authentication Setup
 

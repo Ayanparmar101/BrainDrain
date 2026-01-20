@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Briefcase, FileText, Award, Search, Bell, User, LogOut, X, Cpu } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Apple, FileText, Award, Search, Bell, User, LogOut, X, Utensils } from 'lucide-react';
 
 const Layout = ({ children, isAuthenticated, onLogout }) => {
     const location = useLocation();
@@ -9,44 +9,39 @@ const Layout = ({ children, isAuthenticated, onLogout }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showSearchResults, setShowSearchResults] = useState(false);
     const [notifications, setNotifications] = useState([
-        { id: 1, title: 'New Course Available', message: 'Introduction to AI Ethics has been added.', time: '2 hrs ago', read: false },
-        { id: 2, title: 'Internship Application Update', message: 'Your application for ISRO Internship is under review.', time: '1 day ago', read: false },
-        { id: 3, title: 'Certificate Earned', message: 'Congratulations! You completed "Orbital Mechanics".', time: '2 days ago', read: true },
-        { id: 4, title: 'System Maintenance', message: 'Scheduled maintenance on Sunday 2 AM - 4 AM.', time: '3 days ago', read: true },
+        { id: 1, title: 'New Course Available', message: 'Sports Nutrition Masterclass is now available.', time: '2 hrs ago', read: false },
+        { id: 2, title: 'Program Application Update', message: 'Your application for Dietitian Certification is under review.', time: '1 day ago', read: false },
+        { id: 3, title: 'Certificate Earned', message: 'Congratulations! You completed "Macro & Micronutrients".', time: '2 days ago', read: true },
+        { id: 4, title: 'Meal Plan Ready', message: 'Your personalized meal plan for this week is ready.', time: '3 days ago', read: true },
     ]);
 
     // Search data
     const searchableContent = [
         // Courses
-        { type: 'course', title: 'Machine Learning Fundamentals', path: '/courses', category: 'AI & ML' },
-        { type: 'course', title: 'Deep Learning & Neural Networks', path: '/courses', category: 'AI & ML' },
-        { type: 'course', title: 'Natural Language Processing', path: '/courses', category: 'AI & ML' },
-        { type: 'course', title: 'Full Stack Web Development', path: '/courses', category: 'Web Development' },
-        { type: 'course', title: 'React & Modern JavaScript', path: '/courses', category: 'Web Development' },
-        { type: 'course', title: 'Backend Development with Node.js', path: '/courses', category: 'Web Development' },
-        { type: 'course', title: 'Data Science with Python', path: '/courses', category: 'Data Science' },
-        { type: 'course', title: 'Data Visualization & Analytics', path: '/courses', category: 'Data Science' },
-        { type: 'course', title: 'Big Data & Hadoop', path: '/courses', category: 'Data Science' },
-        { type: 'course', title: 'Cloud Computing with AWS', path: '/courses', category: 'Cloud & DevOps' },
-        { type: 'course', title: 'Docker & Kubernetes', path: '/courses', category: 'Cloud & DevOps' },
-        { type: 'course', title: 'Cybersecurity Essentials', path: '/courses', category: 'Security' },
-        { type: 'course', title: 'Blockchain Technology', path: '/courses', category: 'Emerging Tech' },
-        { type: 'course', title: 'VLSI Design & Verification', path: '/courses', category: 'Hardware' },
-        // Internships
-        { type: 'internship', title: 'ISRO - Satellite Systems', path: '/internships', category: 'Space Technology' },
-        { type: 'internship', title: 'Google - Software Engineering', path: '/internships', category: 'Tech' },
-        { type: 'internship', title: 'Microsoft - Cloud Solutions', path: '/internships', category: 'Tech' },
-        { type: 'internship', title: 'Amazon - ML Research', path: '/internships', category: 'AI/ML' },
+        { type: 'course', title: 'Nutrition Fundamentals', path: '/courses', category: 'Basics' },
+        { type: 'course', title: 'Macro & Micronutrients', path: '/courses', category: 'Nutrition Science' },
+        { type: 'course', title: 'Sports Nutrition', path: '/courses', category: 'Specialized' },
+        { type: 'course', title: 'Plant-Based Nutrition', path: '/courses', category: 'Diets' },
+        { type: 'course', title: 'Meal Planning & Prep', path: '/courses', category: 'Practical' },
+        { type: 'course', title: 'Weight Management Science', path: '/courses', category: 'Wellness' },
+        { type: 'course', title: 'Gut Health & Digestion', path: '/courses', category: 'Health' },
+        { type: 'course', title: 'Clinical Nutrition', path: '/courses', category: 'Medical' },
+        { type: 'course', title: 'Pediatric Nutrition', path: '/courses', category: 'Specialized' },
+        { type: 'course', title: 'Nutritional Biochemistry', path: '/courses', category: 'Science' },
+        { type: 'course', title: 'Food Safety & Hygiene', path: '/courses', category: 'Safety' },
+        { type: 'course', title: 'Supplement Science', path: '/courses', category: 'Advanced' },
+        { type: 'course', title: 'Eating Disorders', path: '/courses', category: 'Psychology' },
+        { type: 'course', title: 'Holistic Nutrition', path: '/courses', category: 'Alternative' },
+        // Programs
+        { type: 'program', title: 'Certified Nutritionist Program', path: '/internships', category: 'Certification' },
+        { type: 'program', title: 'Dietitian Internship', path: '/internships', category: 'Clinical' },
+        { type: 'program', title: 'Sports Nutrition Specialist', path: '/internships', category: 'Sports' },
+        { type: 'program', title: 'Wellness Coach Training', path: '/internships', category: 'Coaching' },
         // Pages
         { type: 'page', title: 'Dashboard', path: '/dashboard', category: 'Navigation' },
         { type: 'page', title: 'Profile', path: '/profile', category: 'Navigation' },
         { type: 'page', title: 'Certificates', path: '/certificates', category: 'Navigation' },
         { type: 'page', title: 'Resources', path: '/resources', category: 'Navigation' },
-        { type: 'page', title: 'Simulations', path: '/simulations', category: 'Navigation' },
-        // Simulations
-        { type: 'simulation', title: '3D CNC Machine Simulator', path: '/simulations', category: 'Manufacturing' },
-        { type: 'simulation', title: 'Digital Circuit Designer', path: '/simulations', category: 'Electronics' },
-        { type: 'simulation', title: 'Projectile Motion Lab', path: '/simulations', category: 'Physics' },
     ];
 
     // If not authenticated, just render the children (Login page) without the layout
@@ -56,9 +51,9 @@ const Layout = ({ children, isAuthenticated, onLogout }) => {
 
     const navItems = [
         { path: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
-        { path: '/courses', label: 'Learning Portal', icon: <BookOpen size={20} /> },
-        { path: '/simulations', label: 'Simulations', icon: <Cpu size={20} /> },
-        { path: '/internships', label: 'Internships', icon: <Briefcase size={20} /> },
+        { path: '/courses', label: 'Learning Hub', icon: <BookOpen size={20} /> },
+        { path: '/internships', label: 'Programs', icon: <Apple size={20} /> },
+        { path: '/nutracoach', label: 'NutraCoach', icon: <Utensils size={20} /> },
         { path: '/resources', label: 'Resources', icon: <FileText size={20} /> },
         { path: '/certificates', label: 'Certificates', icon: <Award size={20} /> },
     ];
@@ -96,7 +91,7 @@ const Layout = ({ children, isAuthenticated, onLogout }) => {
         <div className="app-container">
             <aside className="sidebar">
                 <div className="logo-container">
-                    <div className="logo-text">UDYOG<span>WORK</span></div>
+                    <div className="logo-text">🥗 NUTRA<span>SIM</span></div>
                 </div>
 
                 <nav className="nav-menu">
@@ -125,7 +120,7 @@ const Layout = ({ children, isAuthenticated, onLogout }) => {
                         <Search size={18} color="var(--text-secondary)" />
                         <input
                             type="text"
-                            placeholder="Search courses, internships, pages..."
+                            placeholder="Search courses, programs, tools..."
                             value={searchQuery}
                             onChange={handleSearch}
                             onFocus={() => searchQuery && setShowSearchResults(true)}

@@ -1,6 +1,6 @@
-# 🎓 BrainDrain Student Portal
+# 🥗 NutraSim - Nutrition & Wellness Platform
 
-A comprehensive student portal built with React, Vite, and Firebase for managing courses, internships, and student profiles.
+A comprehensive nutrition and wellness simulation platform built with React, Vite, and Firebase for managing nutrition courses, meal plans, and health tracking.
 
 ![Status](https://img.shields.io/badge/status-ready-success)
 ![Firebase](https://img.shields.io/badge/firebase-integrated-orange)
@@ -15,32 +15,48 @@ A comprehensive student portal built with React, Vite, and Firebase for managing
 - Secure logout
 
 ### 👤 Profile Management
-- Editable student profiles
+- Editable user profiles
 - Real-time Firestore sync
-- Personal details, skills, and achievements
-- CGPA and semester tracking
+- Personal details, dietary preferences, and health goals
+- BMI and health score tracking
 
-### 📚 Learning Portal
-- 14+ industry-relevant courses
+### 📚 Learning Hub
+- 30+ nutrition and wellness courses
 - Multi-module course structure
 - Video player integration
 - Progress tracking
+- Categories: Sports Nutrition, Plant-Based, Clinical, Holistic, and more
 
-### 💼 Internship Opportunities
-- Browse available internships
-- Filter by domain and location
-- Application tracking
+### 🍎 Nutrition Programs
+- Certified Nutritionist Program
+- Dietitian Internship opportunities
+- Sports Nutrition Specialist training
+- Wellness Coach certification
 
 ### 🔔 Notifications
 - Real-time notification system
 - Firestore-powered updates
-- Categorized by type (info, success, warning)
-- Unread count badges
+- Meal plan reminders
+- Course deadlines and achievements
 
 ### 📊 Dashboard
-- Hub for learning and internships
-- Quick access to all features
-- Clean, professional UI
+- Comprehensive health and learning analytics
+- 14-day streak tracking
+- Nutrition schedule visualization
+- Achievement system with badges
+- Global leaderboard
+- Interactive tabs: Overview, Courses, Activity, Achievements, Leaderboard, Schedule
+
+### 🧪 Tools & Simulations
+- BMI Calculator & Body Composition Analyzer
+- Meal Planning Simulator
+- Nutrient Tracker
+- Calorie Calculator
+
+### 📜 Certificates
+- Digital certificate gallery
+- Downloadable certificates
+- Course completion tracking
 
 ## 🚀 Quick Start
 
@@ -52,223 +68,134 @@ A comprehensive student portal built with React, Vite, and Firebase for managing
 ### Installation
 
 1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd BrainDrain
-   ```
+```bash
+git clone <repository-url>
+cd BrainDrain
+```
 
 2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up Firebase** (Already configured!)
-   - Project ID: `braindrain-portal-v1`
-   - Firestore and Authentication enabled
-   - Configuration in `src/firebase.js`
-
-4. **Run development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open in browser**
-   ```
-   http://localhost:5173
-   ```
-
-## 📁 Project Structure
-
-```
-BrainDrain/
-├── src/
-│   ├── components/
-│   │   └── Layout.jsx          # Main layout with sidebar
-│   ├── contexts/
-│   │   └── AuthContext.jsx     # Authentication context
-│   ├── pages/
-│   │   ├── Login.jsx           # Login page
-│   │   ├── Dashboard.jsx       # Main dashboard
-│   │   ├── Courses.jsx         # Course listing
-│   │   ├── CoursePlayer.jsx    # Course player
-│   │   ├── Internships.jsx     # Internship listings
-│   │   ├── Profile.jsx         # User profile
-│   │   ├── Notifications.jsx   # Notifications page
-│   │   ├── Resources.jsx       # Resources
-│   │   └── Certificates.jsx    # Certificates
-│   ├── utils/
-│   │   └── notifications.js    # Notification helpers
-│   ├── firebase.js             # Firebase configuration
-│   ├── App.jsx                 # Main app component
-│   ├── main.jsx                # Entry point
-│   └── index.css               # Global styles
-├── public/
-│   └── videos/                 # Video assets
-├── firebase.json               # Firebase config
-├── firestore.rules             # Firestore security rules
-├── FIREBASE_SETUP.md           # Firebase setup guide
-├── DEPLOYMENT.md               # Deployment instructions
-└── package.json
+```bash
+npm install
 ```
 
-## 🛠️ Tech Stack
+3. **Configure Firebase**
+   - Create a Firebase project
+   - Enable Authentication (Email/Password)
+   - Create a Firestore database
+   - Copy your config to `src/firebase.js`
 
-- **Frontend**: React 18, Vite
-- **Styling**: CSS Variables, Custom Design System
-- **Backend**: Firebase
-  - Authentication
-  - Firestore Database
-  - Hosting
-- **Icons**: Lucide React
-- **Routing**: React Router DOM
+4. **Start development server**
+```bash
+npm run dev
+```
 
-## 🎨 Design System
+## 🎨 Design Theme
 
-### Colors
-- Primary: `#0B3D91` (NASA Blue)
-- Accent: `#FC3D21` (NASA Red)
-- Surface: `#F8F9FA`
-- Text: `#1A1A1A`
-
-### Components
-- Modern, clean interface
-- Responsive design
-- Smooth transitions
-- Professional aesthetics
+NutraSim uses a health-focused design with:
+- **Primary Color**: Green (#16a34a) - Health and wellness
+- **Accent Color**: Orange (#f97316) - Energy and vitality
+- **Background**: Light gradients with green and orange accents
 
 ## 📊 Firebase Collections
 
 ### `users/{userId}`
-```javascript
-{
-  name: string,
-  email: string,
-  phone: string,
-  location: string,
-  department: string,
-  semester: string,
-  cgpa: string,
-  skills: array,
-  achievements: array,
-  createdAt: timestamp,
-  updatedAt: timestamp
-}
-```
+- name, email, phone, location
+- age, weight, height, bmi
+- dietaryPreferences, healthGoals
+- healthScore
 
 ### `notifications/{notificationId}`
-```javascript
-{
-  userId: string,
-  title: string,
-  message: string,
-  type: 'info' | 'success' | 'warning',
-  read: boolean,
-  createdAt: timestamp
-}
-```
+- userId, title, message, type
+- read status, timestamp
 
-## 🔒 Security
+### `courses/{courseId}`
+- title, category, level, duration
+- instructor, modules, rating
 
-- Firebase Authentication required for all routes
-- Firestore rules restrict data access to authenticated users
-- Users can only read/write their own data
-- Environment variables for sensitive config (recommended for production)
+### `enrollments/{enrollmentId}`
+- userId, courseId, progress
+- lastAccessed, completed
 
 ## 📦 Available Scripts
 
 ```bash
-# Development
-npm run dev          # Start dev server
-
-# Production
-npm run build        # Build for production
-npm run preview      # Preview production build
-
-# Deployment
-firebase deploy      # Deploy to Firebase Hosting
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
 ```
 
 ## 🌐 Deployment
 
-### Firebase Hosting (Recommended)
-
-1. **Build the app**
-   ```bash
-   npm run build
-   ```
-
-2. **Deploy**
-   ```bash
-   firebase deploy
-   ```
-
-3. **Live URL**
-   ```
-   https://braindrain-portal-v1.web.app
-   ```
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
-
-## 🧪 Testing
-
-### Create Test User
-1. Go to Firebase Console > Authentication
-2. Add user with email/password
-3. Use credentials to login
-
-### Test Features
-- ✅ Login/Logout
-- ✅ Profile editing
-- ✅ Course navigation
-- ✅ Notifications
-
-## 📝 Environment Variables
-
-For production, create `.env.production`:
-
-```env
-VITE_FIREBASE_API_KEY=your-api-key
-VITE_FIREBASE_AUTH_DOMAIN=your-auth-domain
-VITE_FIREBASE_PROJECT_ID=your-project-id
-VITE_FIREBASE_STORAGE_BUCKET=your-storage-bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-VITE_FIREBASE_APP_ID=your-app-id
+### Firebase Hosting
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init hosting
+npm run build
+firebase deploy
 ```
+
+## 🎯 Key Features
+
+### Dashboard Analytics
+- Real-time stats tracking
+- 14-day learning streak
+- Health score visualization
+- Global leaderboard
+- Activity feed
+- Weekly nutrition tracking
+
+### Course System
+- 30+ nutrition courses
+- Progress tracking
+- Interactive modules
+- Certificates upon completion
+
+### Achievement System
+- Badges for milestones
+- Rarity levels (Common to Legendary)
+- Points system
+- Progress tracking
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+4. Push and open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License
 
 ## 👥 Authors
 
-- **Ayan Parmar** - Initial work
+- **Ayan Parmar** - NutraSim Platform Development
 
 ## 🙏 Acknowledgments
 
 - Firebase for backend services
-- React team for the framework
-- Vite for blazing fast builds
-- Lucide for beautiful icons
+- React and Vite teams
+- Lucide for icons
+- Nutrition science community
 
-## 📞 Support
+## 🔮 Future Enhancements
 
-For issues and questions:
-- Create an issue on GitHub
-- Check [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) for Firebase help
-- Review [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment issues
+- AI-powered meal recommendations
+- Barcode scanner for food logging
+- Fitness tracker integration
+- Social community features
+- Mobile app (React Native)
+- Telemedicine integration
+- Recipe database
+- Grocery list generator
 
 ---
 
-**Built with ❤️ for students**
+**Built with ❤️ for health and wellness**
 
-**Status**: ✅ Production Ready
-**Version**: 1.0.0
-**Last Updated**: November 2024
+**Status**: ✅ Production Ready  
+**Version**: 1.0.0  
+**Last Updated**: January 2026  
+**Platform**: NutraSim - Nutrition & Wellness Simulation Platform

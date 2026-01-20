@@ -10,89 +10,89 @@ const CoursePlayer = () => {
     const [activeLesson, setActiveLesson] = useState(0);
     const [expandedModules, setExpandedModules] = useState({ 0: true });
 
-    // Mock Data for Full Stack Course
+    // Mock Data for Clinical Nutrition Course
     const courseData = {
-        title: "Full Stack Web Development",
+        title: "Clinical Nutrition Fundamentals",
         progress: 15,
         modules: [
             {
-                title: "Module 1: Introduction to Web Development",
+                title: "Module 1: Introduction to Clinical Nutrition",
                 lessons: [
-                    { title: "How the Web Works", duration: "10:00", completed: true },
-                    { title: "Setting up VS Code", duration: "15:00", completed: true },
-                    { title: "Git & GitHub Basics", duration: "25:00", completed: false }
+                    { title: "Role of Clinical Dietitians", duration: "10:00", completed: true },
+                    { title: "Evidence-Based Nutrition Practice", duration: "15:00", completed: true },
+                    { title: "Medical Terminology Essentials", duration: "25:00", completed: false }
                 ]
             },
             {
-                title: "Module 2: HTML5 Mastery",
+                title: "Module 2: Nutritional Assessment",
                 lessons: [
-                    { title: "Semantic HTML", duration: "20:00", completed: false },
-                    { title: "Forms & Validations", duration: "30:00", completed: false },
-                    { title: "Accessibility Best Practices", duration: "15:00", completed: false }
+                    { title: "Anthropometric Measurements", duration: "20:00", completed: false },
+                    { title: "Biochemical Lab Interpretations", duration: "30:00", completed: false },
+                    { title: "Clinical & Physical Assessment", duration: "15:00", completed: false }
                 ]
             },
             {
-                title: "Module 3: CSS3 & Responsive Design",
+                title: "Module 3: Medical Nutrition Therapy Basics",
                 lessons: [
-                    { title: "Box Model & Flexbox", duration: "45:00", completed: false },
-                    { title: "CSS Grid Layouts", duration: "40:00", completed: false },
-                    { title: "Media Queries & Mobile First", duration: "35:00", completed: false }
+                    { title: "Nutrition Care Process (NCP)", duration: "45:00", completed: false },
+                    { title: "Diet Prescription & Modifications", duration: "40:00", completed: false },
+                    { title: "Therapeutic Diet Planning", duration: "35:00", completed: false }
                 ]
             },
             {
-                title: "Module 4: JavaScript Fundamentals",
+                title: "Module 4: Cardiovascular Disease Nutrition",
                 lessons: [
-                    { title: "Variables & Data Types", duration: "20:00", completed: false },
-                    { title: "Functions & Scope", duration: "30:00", completed: false },
-                    { title: "DOM Manipulation", duration: "45:00", completed: false }
+                    { title: "Hypertension Management", duration: "20:00", completed: false },
+                    { title: "Heart Failure & Nutrition", duration: "30:00", completed: false },
+                    { title: "Lipid Disorders & DASH Diet", duration: "45:00", completed: false }
                 ]
             },
             {
-                title: "Module 5: Advanced JavaScript (ES6+)",
+                title: "Module 5: Diabetes Management",
                 lessons: [
-                    { title: "Arrow Functions & Destructuring", duration: "25:00", completed: false },
-                    { title: "Promises & Async/Await", duration: "35:00", completed: false },
-                    { title: "Modules & Webpack", duration: "30:00", completed: false }
+                    { title: "Type 1 & Type 2 Diabetes Nutrition", duration: "25:00", completed: false },
+                    { title: "Carbohydrate Counting Methods", duration: "35:00", completed: false },
+                    { title: "Insulin Therapy & Nutrition", duration: "30:00", completed: false }
                 ]
             },
             {
-                title: "Module 6: React.js Essentials",
+                title: "Module 6: Gastrointestinal Disorders",
                 lessons: [
-                    { title: "Components & Props", duration: "40:00", completed: false },
-                    { title: "State & Lifecycle", duration: "45:00", completed: false },
-                    { title: "Hooks (useState, useEffect)", duration: "50:00", completed: false }
+                    { title: "IBD & IBS Nutrition Management", duration: "40:00", completed: false },
+                    { title: "Celiac Disease & Gluten-Free Diets", duration: "45:00", completed: false },
+                    { title: "GERD & Reflux Management", duration: "50:00", completed: false }
                 ]
             },
             {
-                title: "Module 7: State Management",
+                title: "Module 7: Renal Nutrition",
                 lessons: [
-                    { title: "Context API", duration: "30:00", completed: false },
-                    { title: "Redux Toolkit Basics", duration: "55:00", completed: false },
-                    { title: "Async Thunks", duration: "40:00", completed: false }
+                    { title: "Chronic Kidney Disease Stages", duration: "30:00", completed: false },
+                    { title: "Dialysis Nutrition Management", duration: "55:00", completed: false },
+                    { title: "Fluid & Electrolyte Balance", duration: "40:00", completed: false }
                 ]
             },
             {
-                title: "Module 8: Node.js & Express",
+                title: "Module 8: Critical Care Nutrition",
                 lessons: [
-                    { title: "Node.js Runtime", duration: "25:00", completed: false },
-                    { title: "Building REST APIs", duration: "60:00", completed: false },
-                    { title: "Middleware & Error Handling", duration: "35:00", completed: false }
+                    { title: "Enteral & Parenteral Nutrition", duration: "25:00", completed: false },
+                    { title: "ICU Patient Nutrition Support", duration: "60:00", completed: false },
+                    { title: "Wound Healing & Nutrition", duration: "35:00", completed: false }
                 ]
             },
             {
-                title: "Module 9: Database Management",
+                title: "Module 9: Oncology Nutrition",
                 lessons: [
-                    { title: "MongoDB & NoSQL", duration: "40:00", completed: false },
-                    { title: "Mongoose ODM", duration: "45:00", completed: false },
-                    { title: "Data Modeling", duration: "30:00", completed: false }
+                    { title: "Cancer & Nutritional Impact", duration: "40:00", completed: false },
+                    { title: "Managing Treatment Side Effects", duration: "45:00", completed: false },
+                    { title: "Palliative & Supportive Care", duration: "30:00", completed: false }
                 ]
             },
             {
-                title: "Module 10: Deployment & DevOps",
+                title: "Module 10: Case Studies & Simulations",
                 lessons: [
-                    { title: "CI/CD Pipelines", duration: "45:00", completed: false },
-                    { title: "Deploying to Vercel/Netlify", duration: "20:00", completed: false },
-                    { title: "Docker Basics", duration: "50:00", completed: false }
+                    { title: "Complex Case Analysis", duration: "45:00", completed: false },
+                    { title: "Interactive Patient Simulations", duration: "20:00", completed: false },
+                    { title: "Clinical Documentation Practice", duration: "50:00", completed: false }
                 ]
             }
         ]
@@ -225,14 +225,14 @@ const CoursePlayer = () => {
                     <div style={{ background: 'var(--surface-color)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
                         <h3 style={{ marginBottom: '1rem' }}>Lesson Notes</h3>
                         <p style={{ lineHeight: '1.6', color: 'var(--text-secondary)' }}>
-                            In this lesson, we will cover the fundamental concepts of {currentLesson.title}.
-                            Make sure to have your development environment ready. We will be using VS Code and Chrome Developer Tools.
+                            In this lesson, we will explore the essential concepts of {currentLesson.title}.
+                            Prepare your clinical reference materials and review relevant patient case guidelines. We will use interactive simulations and real-world scenarios.
                             <br /><br />
-                            <strong>Key Takeaways:</strong>
+                            <strong>Key Learning Objectives:</strong>
                             <ul style={{ listStyle: 'disc', marginLeft: '1.5rem', marginTop: '0.5rem' }}>
-                                <li>Understanding the core architecture</li>
-                                <li>Best practices for implementation</li>
-                                <li>Common pitfalls to avoid</li>
+                                <li>Understanding clinical assessment techniques</li>
+                                <li>Evidence-based nutrition intervention strategies</li>
+                                <li>Common clinical challenges and solutions</li>
                             </ul>
                         </p>
                     </div>

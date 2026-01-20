@@ -11,7 +11,7 @@ import Resources from './pages/Resources';
 import Certificates from './pages/Certificates';
 import Profile from './pages/Profile';
 import Notifications from './pages/Notifications';
-import Simulations from './pages/Simulations';
+import NutraCoach from './pages/NutraCoach';
 
 function AppRoutes() {
     const { currentUser, logout, loading } = useAuth();
@@ -24,16 +24,16 @@ function AppRoutes() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-                color: 'white',
+                background: 'var(--bg-gradient)',
+                color: 'var(--text-primary)',
                 fontSize: '18px'
             }}>
                 <div style={{ textAlign: 'center' }}>
                     <div style={{ 
                         width: '50px', 
                         height: '50px', 
-                        border: '4px solid rgba(255,255,255,0.3)', 
-                        borderTop: '4px solid #FF9933', 
+                        border: '4px solid rgba(15, 23, 42, 0.15)', 
+                        borderTop: '4px solid var(--accent-color)', 
                         borderRadius: '50%', 
                         animation: 'spin 1s linear infinite',
                         margin: '0 auto 20px'
@@ -53,11 +53,11 @@ function AppRoutes() {
                 <Route path="/courses" element={currentUser ? <Courses /> : <Navigate to="/" replace />} />
                 <Route path="/course/:courseId" element={currentUser ? <CoursePlayer /> : <Navigate to="/" replace />} />
                 <Route path="/internships" element={currentUser ? <Internships /> : <Navigate to="/" replace />} />
-                <Route path="/simulations" element={currentUser ? <Simulations /> : <Navigate to="/" replace />} />
                 <Route path="/resources" element={currentUser ? <Resources /> : <Navigate to="/" replace />} />
                 <Route path="/certificates" element={currentUser ? <Certificates /> : <Navigate to="/" replace />} />
                 <Route path="/profile" element={currentUser ? <Profile /> : <Navigate to="/" replace />} />
                 <Route path="/notifications" element={currentUser ? <Notifications /> : <Navigate to="/" replace />} />
+                <Route path="/nutracoach" element={currentUser ? <NutraCoach /> : <Navigate to="/" replace />} />
             </Routes>
         </Layout>
     );

@@ -240,18 +240,11 @@ If you want even more:
 
 ## 📦 Deployment
 
-To see all these changes live:
+To view these changes locally:
 
 ```bash
-# Build the app
-npm run build
-
-# Deploy to Firebase
-firebase deploy
+npm run dev
 ```
-
-Your enhanced portal will be live at:
-**https://braindrain-portal-v1.web.app**
 
 ---
 

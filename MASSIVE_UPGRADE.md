@@ -271,17 +271,11 @@ Your portal is now **STUNNING, POLISHED, and FEATURE-RICH**! Here's everything t
 
 ---
 
-## 📦 **To Deploy**
+## 📦 **To Run Locally**
 
 ```bash
-# Build
-npm run build
-
-# Deploy
-firebase deploy
+npm run dev
 ```
-
-**Live URL**: https://braindrain-portal-v1.web.app
 
 ---
 

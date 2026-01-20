@@ -23,37 +23,40 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Set a timeout to prevent infinite loading
-        const timeout = setTimeout(() => {
-            console.log('Auth timeout - proceeding without user');
-            setLoading(false);
-        }, 5000);
+        // Immediately set loading to false after a very short delay
+        const quickTimeout = setTimeout(() => {
+            if (loading) {
+                console.log('Quick timeout - setting loading to false');
+                setLoading(false);
+            }
+        }, 500); // Very short timeout
 
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            clearTimeout(timeout);
+            clearTimeout(quickTimeout);
 
             if (user) {
-                // Don't wait for Firestore, just set the user
+                // Set user immediately
                 setCurrentUser(user);
+                setLoading(false);
 
-                // Fetch profile in background
-                try {
-                    const userDoc = await getDoc(doc(db, 'users', user.uid));
-                    if (userDoc.exists()) {
-                        setCurrentUser({ ...user, profile: userDoc.data() });
-                    }
-                } catch (error) {
-                    console.error('Error fetching user profile:', error);
-                    // Continue anyway with just auth user
-                }
+                // Fetch profile in background without blocking
+                getDoc(doc(db, 'users', user.uid))
+                    .then(userDoc => {
+                        if (userDoc.exists()) {
+                            setCurrentUser({ ...user, profile: userDoc.data() });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching user profile:', error);
+                    });
             } else {
                 setCurrentUser(null);
+                setLoading(false);
             }
-            setLoading(false);
         });
 
         return () => {
-            clearTimeout(timeout);
+            clearTimeout(quickTimeout);
             unsubscribe();
         };
     }, []);
